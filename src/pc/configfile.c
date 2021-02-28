@@ -45,6 +45,15 @@ unsigned int configKeyStickDown  = 0x1F;
 unsigned int configKeyStickLeft  = 0x1E;
 unsigned int configKeyStickRight = 0x20;
 
+unsigned int puppycam_sensitivityX = 75;
+unsigned int puppycam_sensitivityY = 75;
+unsigned int puppycam_invertX = 0;
+unsigned int puppycam_invertY = 0;
+unsigned int puppycam_degrade = 10;
+unsigned int puppycam_aggression = 0;
+unsigned int puppycam_panlevel = 75;
+
+
 
 static const struct ConfigOption options[] = {
     {.name = "fullscreen",     .type = CONFIG_TYPE_BOOL, .boolValue = &configFullscreen},
@@ -61,6 +70,15 @@ static const struct ConfigOption options[] = {
     {.name = "key_stickdown",  .type = CONFIG_TYPE_UINT, .uintValue = &configKeyStickDown},
     {.name = "key_stickleft",  .type = CONFIG_TYPE_UINT, .uintValue = &configKeyStickLeft},
     {.name = "key_stickright", .type = CONFIG_TYPE_UINT, .uintValue = &configKeyStickRight},
+    {.name = "puppycam_sensitivity_x", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_sensitivityX},
+    {.name = "puppycam_sensitivity_y", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_sensitivityY},
+    {.name = "puppycam_invert_x", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_invertX},
+    {.name = "puppycam_invert_y", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_invertY},
+    {.name = "puppycam_stopping_speed", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_degrade},
+    {.name = "puppycam_centre_aggression", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_aggression},
+    {.name = "puppycam_pan_amount", .type = CONFIG_TYPE_UINT, .uintValue = &puppycam_panlevel},
+
+
 };
 
 // Reads an entire line from a file (excluding the newline character) and returns an allocated string

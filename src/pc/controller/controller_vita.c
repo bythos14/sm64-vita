@@ -6,7 +6,10 @@
 
 #include "controller_api.h"
 
+s16 rightstick[2];
+
 #define DEADZONE 20
+#define CAM_DEADZONE 20
 
 static void vita_init(void) {
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG_WIDE);
@@ -45,6 +48,21 @@ static void vita_read(OSContPad *pad) {
     if (magnitude_sq < (uint32_t)(DEADZONE * DEADZONE)) {
         pad->stick_x = 0;
         pad->stick_y = 0;
+    }
+
+    uint16_t rightx = (s8)((s32) ctrl.rx - 128);
+    uint16_t righty = (s8)(-((s32) ctrl.ry - 127));
+    uint32_t magnitude_sq2 = (uint32_t)(rightx * righty) + (uint32_t)(rightx * righty);
+    if (magnitude_sq2 > (uint32_t)(DEADZONE * DEADZONE)) {
+        rightstick[0] = rightx;
+        rightstick[1] = righty;
+    }
+    else
+    {
+        if (rightx < DEADZONE)
+            rightstick[0] = 0;
+        if (righty < DEADZONE)
+            rightstick[1] = 0;
     }
 
     if (ctrl.rx < 40)

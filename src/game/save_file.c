@@ -11,11 +11,13 @@
 #include "level_table.h"
 #include "course_table.h"
 #include "thread6.h"
+#include "../../enhancements/puppycam.h"
 
 #define MENU_DATA_MAGIC 0x4849
 #define SAVE_FILE_MAGIC 0x4441
 
-STATIC_ASSERT(sizeof(struct SaveBuffer) == EEPROM_SIZE, "eeprom buffer size must match");
+STATIC_ASSERT(sizeof(struct SaveBuffer) <= EEPROM_SIZE, "eeprom buffer size higher than intended");
+STATIC_ASSERT(sizeof(struct SaveBuffer) >= EEPROM_SIZE, "eeprom buffer size lower than intended");
 
 extern struct SaveBuffer gSaveBuffer;
 
@@ -564,6 +566,51 @@ void save_file_set_sound_mode(u16 mode) {
 u16 save_file_get_sound_mode(void) {
     return gSaveBuffer.menuData[0].soundMode;
 }
+
+#ifndef NC_CODE_NOSAVE
+void save_file_set_setting(void) {
+
+    gSaveBuffer.menuData[0].camx = (s16)newcam_sensitivityX;
+    gSaveBuffer.menuData[0].camy = (s16)newcam_sensitivityY;
+    gSaveBuffer.menuData[0].invertx = (s16)newcam_invertX;
+    gSaveBuffer.menuData[0].inverty = (s16)newcam_invertY;
+    gSaveBuffer.menuData[0].camc = (s16)newcam_aggression;
+    gSaveBuffer.menuData[0].camp = (s16)newcam_panlevel;
+    gSaveBuffer.menuData[0].analogue = (s16)newcam_analogue;
+    gSaveBuffer.menuData[0].degrade = (s16)newcam_degrade;
+
+    gSaveBuffer.menuData[0].firsttime = 1;
+
+
+    gMainMenuDataModified = TRUE;
+    save_main_menu_data();
+}
+
+void save_file_get_setting(void) {
+        newcam_sensitivityX = gSaveBuffer.menuData[0].camx;
+        newcam_sensitivityY = gSaveBuffer.menuData[0].camy;
+        newcam_invertX = gSaveBuffer.menuData[0].invertx;
+        newcam_invertY = gSaveBuffer.menuData[0].inverty;
+        newcam_aggression = gSaveBuffer.menuData[0].camc;
+        newcam_panlevel = gSaveBuffer.menuData[0].camp;
+        newcam_analogue = gSaveBuffer.menuData[0].analogue;
+        newcam_degrade = gSaveBuffer.menuData[0].degrade;
+}
+
+u8 save_check_firsttime(void)
+{
+    return gSaveBuffer.menuData[0].firsttime;
+}
+
+
+void save_set_firsttime(void)
+{
+    gSaveBuffer.menuData[0].firsttime = 1;
+
+    gMainMenuDataModified = TRUE;
+    save_main_menu_data();
+}
+#endif
 
 void save_file_move_cap_to_default_location(void) {
     if (save_file_get_flags() & SAVE_FLAG_CAP_ON_GROUND) {
