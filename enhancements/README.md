@@ -15,6 +15,9 @@ branch, make your changes to the code (but do not commit), then run `tools/creat
 
 The following enhancements are included in this directory:
 
+## Analog camera - `puppycam.patch` by FazanaJ
+Puppycam is a brand new camera mode for SM64, designed from the ground up, to improve and fix all of the existing flaws with the horribly dated camera, that comes with the original game.
+
 ## 60 FPS - `60fps.patch`
 
 This patch is only supported when not targeting N64. It also currently requires a 64-bit platform. If compiled for a 32-bit platform, the game will run out of memory and crash.
