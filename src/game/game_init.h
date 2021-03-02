@@ -9,7 +9,11 @@
 #include "types.h"
 #include "memory.h"
 
+#ifdef TARGET_N64
 #define GFX_POOL_SIZE 6400
+#else
+#define GFX_POOL_SIZE 64000
+#endif
 
 struct GfxPool {
     Gfx buffer[GFX_POOL_SIZE];

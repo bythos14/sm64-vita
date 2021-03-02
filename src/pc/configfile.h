@@ -16,6 +16,14 @@ extern unsigned int configKeyStickDown;
 extern unsigned int configKeyStickLeft;
 extern unsigned int configKeyStickRight;
 
+extern unsigned int puppycam_sensitivityX;
+extern unsigned int puppycam_sensitivityY;
+extern unsigned int puppycam_invertX;
+extern unsigned int puppycam_invertY;
+extern unsigned int puppycam_degrade;
+extern unsigned int puppycam_aggression;
+extern unsigned int puppycam_panlevel;
+
 void configfile_load(const char *filename);
 void configfile_save(const char *filename);
 

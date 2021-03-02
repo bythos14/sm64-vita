@@ -13,8 +13,6 @@
  *                      WALLS                     *
  **************************************************/
 
-#include "math_util.h"
-
 /**
  * Iterate through the list of walls until all walls are checked and
  * have given their wall push.

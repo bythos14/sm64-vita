@@ -9,9 +9,9 @@
 #define DISPLAY_HEIGHT 544
 
 #ifdef VERSION_EU
-    #define FRAMERATE 25
+    #define FRAMERATE 50
 #else
-    #define FRAMERATE 30
+    #define FRAMERATE 60
 #endif
 
 static const uint64_t frametime = 1000000 / FRAMERATE;
