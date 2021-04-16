@@ -381,19 +381,19 @@ void adjust_analog_stick(struct Controller *controller) {
 
     // modulate the rawStickX and rawStickY to be the new f32 values by adding/subtracting 6.
     if (controller->rawStickX <= -8) {
-        controller->stickX = controller->rawStickX + 6;
+        controller->stickX = controller->rawStickX * 0.75f + 6;
     }
 
     if (controller->rawStickX >= 8) {
-        controller->stickX = controller->rawStickX - 6;
+        controller->stickX = controller->rawStickX * 0.75f - 6;
     }
 
     if (controller->rawStickY <= -8) {
-        controller->stickY = controller->rawStickY + 6;
+        controller->stickY = controller->rawStickY * 0.75f + 6;
     }
 
     if (controller->rawStickY >= 8) {
-        controller->stickY = controller->rawStickY - 6;
+        controller->stickY = controller->rawStickY * 0.75f - 6;
     }
 
     // calculate f32 magnitude from the center by vector length.
