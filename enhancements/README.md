@@ -18,6 +18,9 @@ The following enhancements are included in this directory:
 ## Analog camera - `puppycam.patch` by FazanaJ
 Puppycam is a brand new camera mode for SM64, designed from the ground up, to improve and fix all of the existing flaws with the horribly dated camera, that comes with the original game.
 
+## No Draw Distance - `nodrawdistance.patch`
+This patch removes distance checks and allows objects and entities to render at any distance on a level. 60 FPS patch is also recommended, as per testing, Bob-omb Battlefield crashes without it.
+
 ## 60 FPS - `60fps.patch`
 
 This patch is only supported when not targeting N64. It also currently requires a 64-bit platform. If compiled for a 32-bit platform, the game will run out of memory and crash.
